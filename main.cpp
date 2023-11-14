@@ -38,10 +38,12 @@ int main() {
 
     AudioComponent component5 = AudioComponent();
     component5.audioPath = "../Assets/Sounds/sound.mp3";
-    component5.isPlaying = true;
+    component5.isPlaying = false;
     component5.volume = 1;
     component5.shouldBePlaying = true;
     component5.isLooping = false;
+    component5.channel = 1;
+    component5.isSoundTrack = true;
 
     object.AddComponent(&component2);
     object.AddComponent(&component);
