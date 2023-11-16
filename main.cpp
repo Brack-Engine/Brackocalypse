@@ -8,16 +8,15 @@
 #include "Components/AIComponent.hpp"
 #include "Components/AnimationComponent.hpp"
 #include "Components/AudioComponent.hpp"
+#include "Components/SoundEffectComponent.hpp"
+#include "Components/SoundTrackComponent.hpp"
 
 int main() {
     std::unique_ptr<GameObject> object = std::make_unique<GameObject>();
-    int channel = 1;
     auto audioPath = "../Assets/Sounds/song.mp3";
-    bool isSoundTrack = true;
-    std::unique_ptr<AudioComponent> component5 = std::make_unique<AudioComponent>(audioPath, channel, isSoundTrack);
-    component5->volume = 1;
-    component5->shouldBePlaying = true;
-    component5->isLooping = false;
+    std::unique_ptr<AudioComponent> component5 = std::make_unique<SoundEffectComponent>(audioPath);
+    component5->startPlaying = true;
+    component5->volume = 0.1;
 
     object->AddComponent(std::move(component5));
 
