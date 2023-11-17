@@ -7,7 +7,6 @@
 //#include "../Brack-Engine/src/FPSSingleton.hpp"
 #include "Components/AIComponent.hpp"
 #include "Components/AnimationComponent.hpp"
-#include "Components/AudioComponent.hpp"
 #include "Components/SoundEffectComponent.hpp"
 #include "Components/SoundTrackComponent.hpp"
 
@@ -18,10 +17,6 @@ int main() {
     component5->startPlaying = true;
     component5->volume = 0.1;
 
-    std::unique_ptr<SoundEffectComponent> component9 = std::make_unique<SoundEffectComponent>(audioPath);
-    component9->startPlaying = true;
-    component9->volume = 0.1;
-
     auto audioPath2 = "../Assets/Sounds/song.mp3";
     std::unique_ptr<SoundTrackComponent> component8 = std::make_unique<SoundTrackComponent>(audioPath2);
     component8->startPlaying = true;
@@ -29,7 +24,6 @@ int main() {
 
     object->AddComponent(std::move(component5));
     object->AddComponent(std::move(component8));
-    object->AddComponent(std::move(component9));
 
     Config config = new Config();
     config.windowTitle = "Brackocalypse";
@@ -45,5 +39,6 @@ int main() {
     SceneManager::GetInstance().SetActiveScene(scene);
 
     brackEngine.Run();
+
     return 0;
 }
