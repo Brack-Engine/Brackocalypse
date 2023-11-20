@@ -16,11 +16,13 @@ int main() {
     std::unique_ptr<SoundEffectComponent> component5 = std::make_unique<SoundEffectComponent>(audioPath);
     component5->startPlaying = true;
     component5->volume = 0.1;
+    component5->pauseSound = false;
 
     auto audioPath2 = "../Assets/Sounds/song.mp3";
     std::unique_ptr<SoundTrackComponent> component8 = std::make_unique<SoundTrackComponent>(audioPath2);
     component8->startPlaying = true;
     component8->volume = 0.1;
+    component8->pauseSound = false;
 
     object->AddComponent(std::move(component5));
     object->AddComponent(std::move(component8));
@@ -39,6 +41,5 @@ int main() {
     SceneManager::GetInstance().SetActiveScene(scene);
 
     brackEngine.Run();
-
     return 0;
 }
