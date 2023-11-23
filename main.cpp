@@ -18,35 +18,27 @@ int main() {
 
     BrackEngine brackEngine = BrackEngine(std::move(config));
     auto camera = Camera();
+    auto transformCam = camera.TryGetComponent<TransformComponent>();
+    transformCam.rotation = 90;
     camera.SetBackgroundColor(Color(0, 255, 0, 255));
     auto scene = Scene(std::move(camera));
 
+    //Sprite
     auto object = std::make_unique<GameObject>();
-    auto audio = AudioComponent();
-    object->AddComponent(audio);
-    
-    auto text = std::make_unique<Text>("Poepjes");
+    auto sprite = std::make_unique<SpriteComponent>();
+    auto transform = std::make_unique<TransformComponent>();
+    sprite->spritePath =
+            ConfigSingleton::GetInstance().GetBaseAssetPath() + "Sprites/roguelikeSheet_transparent_1.bmp";
+    sprite->spriteSize = std::make_unique<Vector2>(16, 16);
+    sprite->tileOffset = std::make_unique<Vector2>(6, 0);
+    sprite->margin = 1;
 
+    transform->position = std::make_unique<Vector2>(100, 100);
+    transform->scale = std::make_unique<Vector2>(6, 6);
+
+    object->AddComponent(std::move(sprite));
+    object->AddComponent(std::move(transform));
     scene.AddGameObject(std::move(object));
-    scene.AddGameObject(std::move(text));
-
-    for (int i = 0; i < 10; ++i) {
-        auto object = std::make_unique<GameObject>();
-        auto sprite = std::make_unique<SpriteComponent>();
-        auto transform = std::make_unique<TransformComponent>();
-        sprite->spritePath =
-                ConfigSingleton::GetInstance().GetBaseAssetPath() + "Sprites/roguelikeSheet_transparent_1.bmp";
-        sprite->spriteSize = std::make_unique<Vector2>(16, 16);
-        sprite->tileOffset = std::make_unique<Vector2>(6, 0);
-        sprite->margin = 1;
-
-        transform->position = std::make_unique<Vector2>(i * 16, 10);
-        transform->scale = std::make_unique<Vector2>(1, 1);
-
-        object->AddComponent(std::move(sprite));
-        object->AddComponent(std::move(transform));
-        scene.AddGameObject(std::move(object));
-    }
 
     SceneManager::GetInstance().SetActiveScene(scene);
 
