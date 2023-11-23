@@ -49,14 +49,14 @@ int main() {
     veloc2->velocity = Vector2(10.0f, 0.0f);*/
 
     //    Up -- Down
-    gameObject1->TryGetComponent<TransformComponent>().position = std::make_unique<Vector2>(50.0f, 5.0f);
-    gameObject2->TryGetComponent<TransformComponent>().position = std::make_unique<Vector2>(50.0f, 50.0f);
+    gameObject1->tryGetComponent<TransformComponent>().position = std::make_unique<Vector2>(50.0f, 5.0f);
+    gameObject2->tryGetComponent<TransformComponent>().position = std::make_unique<Vector2>(50.0f, 50.0f);
 
     veloc1->velocity = Vector2(0.0f, 10.0f);
     veloc2->velocity = Vector2(0.0f, -10.0f);
 
-    gameObject1->TryGetComponent<TextComponent>().sortingLayer = 1;
-    gameObject2->TryGetComponent<TextComponent>().sortingLayer = 1;
+    gameObject1->tryGetComponent<TextComponent>().sortingLayer = 1;
+    gameObject2->tryGetComponent<TextComponent>().sortingLayer = 1;
 
 
     gameObject1->AddComponent(std::move(comp1));
@@ -69,7 +69,7 @@ int main() {
     scene.AddGameObject(std::move(gameObject1));
     scene.AddGameObject(std::move(gameObject2));
 
-    SceneManager::GetInstance().SetActiveScene(scene);
+    SceneManager::getInstance().setActiveScene(scene);
 
 
     brackEngine.Run();
