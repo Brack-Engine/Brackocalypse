@@ -16,10 +16,10 @@ int main() {
 
     BrackEngine brackEngine = BrackEngine(std::move(config));
     auto camera = Camera();
-    camera.AddComponent(VelocityComponent());
+    camera.addComponent(VelocityComponent());
     camera.SetBackgroundColor(Color(0, 255, 0, 255));
-    camera.SetTag("mainCamera");
-    camera.AddComponent(FollowGameObject("Player"));
+    camera.setTag("mainCamera");
+    camera.addComponent(FollowGameObject("Player"));
     auto scene = Scene(std::move(camera));
 
     std::vector<std::vector<std::string>> map{};
@@ -65,12 +65,30 @@ int main() {
 
     levelBuilder.buildLevel();
 
-    for (auto& go: levelBuilder.gameObjects) {
+    for (auto &go: levelBuilder.gameObjects) {
         scene.AddGameObject(std::move(go));
     }
 
+    auto gun = std::make_unique<GameObject>();
+    auto gunSprite = std::make_unique<SpriteComponent>();
+    auto &gunTransform = gun->tryGetComponent<TransformComponent>();
+    gunSprite->spritePath = "Sprites/Guns/Pistol_Shooting.png";
+    gunSprite->spriteSize = std::make_unique<Vector2>(80, 48);
+    gunSprite->sortingLayer = 1;
+    gunSprite->orderInLayer = 0;
+    gunTransform.scale = std::make_unique<Vector2>(2, 2);
+    gunSprite->tileOffset = std::make_unique<Vector2>(0, 0);
+    gun->setTag("Gun");
+    gun->setName("Gun");
+    gun->addComponent(std::move(gunSprite));
+
+    scene.AddGameObject(std::move(gun));
+
     SceneManager::getInstance().setActiveScene(scene);
 
+    auto player = SceneManager::getInstance().getGameObjectByTag("Player");
+    auto gunObject = SceneManager::getInstance().getGameObjectByTag("Gun");
+    player.value().addChild(gunObject.value());
     brackEngine.Run();
     return 0;
 }
