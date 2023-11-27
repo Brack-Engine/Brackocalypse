@@ -1,5 +1,6 @@
 #include <Components/AIComponent.hpp>
 #include <Components/AnimationComponent.hpp>
+#include <Components/TextComponent.hpp>
 #include "Objects/Scene.hpp"
 #include "BrackEngine.hpp"
 #include "../Brack-Engine/src/ConfigSingleton.hpp"
@@ -68,6 +69,13 @@ int main() {
     for (auto& go: levelBuilder.gameObjects) {
         scene.AddGameObject(std::move(go));
     }
+
+    std::unique_ptr<GameObject> text = std::make_unique<GameObject>();
+    auto textComp = TextComponent();
+    textComp.text = "HELLO WORLD";
+    textComp.color = std::make_unique<Color>(100, 100, 100, 0);
+    text->AddComponent(textComp);
+    scene.AddGameObject(std::move(text));
 
     SceneManager::getInstance().setActiveScene(scene);
 
