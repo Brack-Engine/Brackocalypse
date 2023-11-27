@@ -15,8 +15,7 @@ void LevelBuilder::buildLevel() {
                 if(c == '.') continue;
                 std::unique_ptr<GameObject> object = levelFactory_.createGameObject(c,Vector2(x,y), sortingLayer);
                 if(c == 'J') {
-                    auto& transform = object->tryGetComponent<TransformComponent>();
-                    transform.rotation = 30;
+                    object->setRotation(30);
                 }
                 gameObjects.push_back(std::move(object));
                 x++;
