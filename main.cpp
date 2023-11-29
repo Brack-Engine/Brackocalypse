@@ -72,11 +72,13 @@ int main() {
     auto gun = std::make_unique<GameObject>();
     auto gunSprite = std::make_unique<SpriteComponent>();
     auto &gunTransform = gun->tryGetComponent<TransformComponent>();
-    gunSprite->spritePath = "Sprites/Guns/Pistol_Shooting.png";
-    gunSprite->spriteSize = std::make_unique<Vector2>(80, 48);
+    gunSprite->spritePath = "Sprites/character_maleAdventurer_sheet.png";
+    gunSprite->spriteSize = std::make_unique<Vector2>(96, 128);
+    gunSprite->margin = 5;
     gunSprite->sortingLayer = 1;
     gunSprite->orderInLayer = 0;
-    gunTransform.scale = std::make_unique<Vector2>(2, 2);
+    gunTransform.scale = std::make_unique<Vector2>(0.5, 0.5);
+    gunTransform.position = std::make_unique<Vector2>(100, 0);
     gunSprite->tileOffset = std::make_unique<Vector2>(0, 0);
     gun->setTag("Gun");
     gun->setName("Gun");
