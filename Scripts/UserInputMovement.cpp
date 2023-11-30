@@ -8,7 +8,8 @@
 
 void UserInputMovement::onStart() {}
 
-void UserInputMovement::onUpdate(int deltaTime) {
+void UserInputMovement::onUpdate(milliseconds deltaTime) {
+    
     auto &playerVelocityComponent = tryGetComponent<VelocityComponent>();
 
     if (InputManager::GetInstance().IsKeyPressed(KeyMap::w) || InputManager::GetInstance().IsKeyPressed(KeyMap::UP)) {

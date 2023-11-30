@@ -17,7 +17,7 @@ public:
 
     virtual void onStart() override;
 
-    virtual void onUpdate(int deltaTime) override;
+    virtual void onUpdate(milliseconds deltaTime) override;
 
     std::unique_ptr<IComponent> clone() const override {
         return std::make_unique<ReplayScript>(*this);

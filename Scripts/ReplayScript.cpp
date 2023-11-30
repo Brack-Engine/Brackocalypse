@@ -15,7 +15,7 @@ ReplayScript::ReplayScript(milliseconds replayStorageDuration, milliseconds snap
 
 void ReplayScript::onStart() {}
 
-void ReplayScript::onUpdate(int deltaTime) {
+void ReplayScript::onUpdate(milliseconds deltaTime) {
     if (InputManager::GetInstance().IsKeyPressed(KeyMap::ESCAPE))
         SystemManager::GetInstance().GetSystem<ReplaySystem>().lock()->toggleReplay();
 }
