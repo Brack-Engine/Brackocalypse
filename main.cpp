@@ -24,8 +24,8 @@ int main() {
     component8->volume = 0.1;
     component8->pauseSound = false;
 
-    object->AddComponent(std::move(component5));
-    object->AddComponent(std::move(component8));
+    object->addComponent(std::move(component5));
+    object->addComponent(std::move(component8));
 
     Config config = new Config();
     config.windowTitle = "Brackocalypse";
@@ -38,7 +38,7 @@ int main() {
     auto scene = Scene(std::move(camera));
 
     scene.AddGameObject(std::move(object));
-    SceneManager::GetInstance().SetActiveScene(scene);
+    SceneManager::getInstance().setActiveScene(scene);
 
     brackEngine.Run();
     return 0;
