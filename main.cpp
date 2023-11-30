@@ -17,10 +17,10 @@ int main() {
 
     BrackEngine brackEngine = BrackEngine(std::move(config));
     auto camera = Camera();
-    camera.AddComponent(VelocityComponent());
+    camera.addComponent(VelocityComponent());
     camera.SetBackgroundColor(Color(0, 255, 0, 255));
-    camera.SetTag("mainCamera");
-    camera.AddComponent(FollowGameObject("Player"));
+    camera.setTag("mainCamera");
+    camera.addComponent(FollowGameObject("Player"));
     auto scene = Scene(std::move(camera));
     std::unique_ptr<GameObject> replay = std::make_unique<Replay>(0);
     scene.AddGameObject(std::move(replay));
