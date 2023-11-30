@@ -6,25 +6,25 @@
 
 void FollowGameObject::onStart() {}
 
-void FollowGameObject::onUpdate(float deltaTime) {
+void FollowGameObject::onUpdate(int deltaTime) {
     auto playerGameObject = getGameObjectByTag(followGameObjectTag);
-    if(!playerGameObject.has_value()) return;
-    auto& playerTransform = playerGameObject.value().tryGetComponent<TransformComponent>();
+    if (!playerGameObject.has_value()) return;
+    auto &playerTransform = playerGameObject.value().tryGetComponent<TransformComponent>();
 
-    auto& cameraTransformComponent = tryGetComponent<TransformComponent>();
+    auto &cameraTransformComponent = tryGetComponent<TransformComponent>();
 
     auto yDistance = playerTransform.position->getY() - cameraTransformComponent.position->getY();
     auto xDistance = playerTransform.position->getX() - cameraTransformComponent.position->getX();
 
-    if(yDistance > moveCameraMargin){
+    if (yDistance > moveCameraMargin) {
         cameraTransformComponent.position->setY(playerTransform.position->getY() - moveCameraMargin);
-    }else if(yDistance < -moveCameraMargin){
+    } else if (yDistance < -moveCameraMargin) {
         cameraTransformComponent.position->setY(playerTransform.position->getY() + moveCameraMargin);
     }
 
-    if(xDistance > moveCameraMargin){
+    if (xDistance > moveCameraMargin) {
         cameraTransformComponent.position->setX(playerTransform.position->getX() - moveCameraMargin);
-    }else if(xDistance < -moveCameraMargin){
+    } else if (xDistance < -moveCameraMargin) {
         cameraTransformComponent.position->setX(playerTransform.position->getX() + moveCameraMargin);
     }
 }

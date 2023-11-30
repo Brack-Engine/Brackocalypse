@@ -15,7 +15,7 @@ public:
 
     virtual void onStart() override;
 
-    virtual void onUpdate(float deltaTime) override;
+    virtual void onUpdate(int deltaTime) override;
 
     std::unique_ptr<IComponent> clone() const override {
         return std::make_unique<UserInputMovement>(*this);
@@ -26,7 +26,8 @@ public:
         onStart();
     }
 
-    UserInputMovement(const UserInputMovement& other) : BehaviourScript(other) {}
+    UserInputMovement(const UserInputMovement &other) : BehaviourScript(other) {}
+
 private:
     float velocity = 250.0;
 };

@@ -8,6 +8,7 @@
 #include "Src/Player.hpp"
 #include "Scripts/FollowGameObject.hpp"
 #include "Src/LevelBuilder.hpp"
+#include "Src/Replay.hpp"
 
 int main() {
     Config config = new Config();
@@ -21,6 +22,8 @@ int main() {
     camera.SetTag("mainCamera");
     camera.AddComponent(FollowGameObject("Player"));
     auto scene = Scene(std::move(camera));
+    std::unique_ptr<GameObject> replay = std::make_unique<Replay>(0);
+    scene.AddGameObject(std::move(replay));
 
     std::vector<std::vector<std::string>> map{};
     map.emplace_back();
@@ -65,7 +68,7 @@ int main() {
 
     levelBuilder.buildLevel();
 
-    for (auto& go: levelBuilder.gameObjects) {
+    for (auto &go: levelBuilder.gameObjects) {
         scene.AddGameObject(std::move(go));
     }
 
