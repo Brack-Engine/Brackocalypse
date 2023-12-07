@@ -101,7 +101,9 @@ int main() {
 
     auto player = std::make_unique<Player>(scene.getGameObjectByName("PlayerSpawn"));
     scene.addGameObject(std::move(player));
-    
+    scene.getGameObjectByName("Player");
+
+    scene.removeGameObjectByName("Player");
     brackEngine.Run();
 
     return 0;
