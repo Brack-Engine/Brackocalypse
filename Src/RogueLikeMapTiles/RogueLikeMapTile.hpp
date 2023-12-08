@@ -18,7 +18,7 @@ struct RogueLikeMapTile : public GameObject {
         spriteComponent.tileOffset = std::make_unique<Vector2>(tileOffset);
         spriteComponent.sortingLayer = layer;
         spriteComponent.orderInLayer = 2;
-        spriteComponent.imageSize = std::make_unique<Vector2>(968,526);
+        spriteComponent.imageSize = std::make_unique<Vector2>(968, 526);
         addComponent(spriteComponent);
         auto &transform = tryGetComponent<TransformComponent>();
         transform.scale = std::make_unique<Vector2>(spriteScale);
@@ -31,7 +31,9 @@ struct RogueLikeMapTile : public GameObject {
         transform.position = std::make_unique<Vector2>(posX, posY);
     }
 
-    ~RogueLikeMapTile() = default;
+    ~RogueLikeMapTile() {
+        spritePath.clear();
+    }
 
     int spriteMargin = 1;
     Vector2 spriteScale = Vector2(4, 4);

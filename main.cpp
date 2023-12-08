@@ -6,9 +6,9 @@
 #include "Src/Scenes/HomeScene.hpp"
 
 int main() {
-    Config config = new Config();
-    config.windowTitle = "Brackocalypse";
-    config.windowSize = Vector2(640, 640);
+    auto config = std::make_unique<Config>();
+    config->windowTitle = "Brackocalypse";
+    config->windowSize = Vector2(640, 640);
 
     BrackEngine brackEngine = BrackEngine(std::move(config));
 

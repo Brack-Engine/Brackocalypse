@@ -14,7 +14,7 @@
 #include "../Scripts/UserInputMovement.hpp"
 #include "Gun.hpp"
 
-Player::Player(GameObject *spawnLocationMapTile) {
+Player::Player(std::unique_ptr<GameObject> &spawnLocationMapTile) {
     auto &transformComponent = spawnLocationMapTile->tryGetComponent<TransformComponent>();
     Vector2 location = Vector2(transformComponent.position->getX(), transformComponent.position->getY());
     auto spriteComponent = spawnLocationMapTile->tryGetComponent<SpriteComponent>();

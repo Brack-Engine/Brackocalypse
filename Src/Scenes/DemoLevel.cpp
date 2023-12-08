@@ -12,7 +12,7 @@
 #include "../BulletPool.hpp"
 
 DemoLevel::DemoLevel() : Scene() {
-    auto camera = getAllCameras()[0];
+    auto &camera = getAllCameras()[0];
     camera->addComponent(VelocityComponent());
     camera->SetBackgroundColor(Color(0, 255, 0, 255));
     camera->addComponent(FollowGameObject("Player"));
@@ -113,6 +113,7 @@ DemoLevel::DemoLevel() : Scene() {
         this->addGameObject(std::move(go));
     }
 
-    auto player = std::make_unique<Player>(this->getGameObjectByName("PlayerSpawn"));
+    auto &tile = this->getGameObjectByName("PlayerSpawn");
+    auto player = std::make_unique<Player>(tile);
     this->addGameObject(std::move(player));
 }
