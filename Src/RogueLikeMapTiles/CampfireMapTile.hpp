@@ -17,6 +17,7 @@ struct CampfireMapTile : public RogueLikeMapTile {
         spriteAnimationComponent.startPosition = std::make_unique<Vector2>(14, 8);
         spriteAnimationComponent.frameCount = 2;
         spriteAnimationComponent.fps = 4;
+        spriteAnimationComponent.imageSize = std::make_unique<Vector2>(968, 526);
         addComponent(spriteAnimationComponent);
 
         auto particleEmitterComponent = ParticleEmitterComponent(20);

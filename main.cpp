@@ -1,9 +1,12 @@
+#include <Components/TileMapComponent.hpp>
 #include "Objects/Scene.hpp"
 #include "BrackEngine.hpp"
 #include "../Brack-Engine/src/ConfigSingleton.hpp"
 #include "Src/Helpers/RogueLikeSheetMap.hpp"
 #include "Scripts/UserInputMovement.hpp"
 #include "Src/Scenes/HomeScene.hpp"
+#include "Scripts/FollowGameObject.hpp"
+#include "Src/LevelBuilder.hpp"
 
 int main() {
     auto config = std::make_unique<Config>();
