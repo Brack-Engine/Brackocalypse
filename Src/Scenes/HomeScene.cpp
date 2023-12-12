@@ -36,7 +36,6 @@ HomeScene::HomeScene() : Scene() {
     auto spriteBg = std::make_unique<SpriteComponent>();
     spriteBg->spritePath = "Sprites/logo.png";
     spriteBg->spriteSize = std::make_unique<Vector2>(736, 105);
-    spriteBg->imageSize = std::make_unique<Vector2>(100, 100);
     spriteBg->tileOffset = std::make_unique<Vector2>(0, 0);
     spriteBg->orderInLayer = 0;
 

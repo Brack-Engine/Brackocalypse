@@ -56,7 +56,7 @@ void GunShooting::shakeCamera() {
 }
 
 void GunShooting::shoot() {
-    for (auto &bullet: getGameObjectsByTag("Bullet")) {
+    for (auto bullet: getGameObjectsByTag("Bullet")) {
         if (!bullet.isActive()) {
             bullet.setActive(true);
             auto &transform = bullet.tryGetComponent<TransformComponent>();
